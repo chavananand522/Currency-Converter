@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Currency Converter</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <h1>Currency Converter</h1>
+
+    <form>
+
+        <!-- From Currency -->
+        <label for="from">From:</label>
+
+        <select id="from">
+            <option value="USD">USD</option>
+            <option value="AED">AED</option>
+            <option value="INR">INR</option>
+            <option value="CZK">CZK</option>
+        </select>
+
+        <br><br>
+
+        <!-- To Currency -->
+        <label for="to">To:</label>
+
+        <select id="to">
+            <option value="USD">USD</option>
+            <option value="AED">AED</option>
+            <option value="INR">INR</option>
+            <option value="CZK">CZK</option>
+        </select>
+
+        <br><br>
+
+        <!-- Amount -->
+        <label for="amount">Amount:</label>
+        <input type="text" id="amount">
+
+        <br><br>
+
+        <!-- Convert Button -->
+        <button type="button" id="convert">Convert</button>
+
+    </form>
+
+    <!-- Result -->
+    <h3 id="result"></h3>
+
+    <script>
+
+        // Getting HTML elements
+        var from = document.getElementById("from");
+        var to = document.getElementById("to");
+        var amount = document.getElementById("amount");
+        var convert = document.getElementById("convert");
+        var result = document.getElementById("result");
+
+
+        // Convert button click event
+        convert.addEventListener("click", function () {
+
+            // Getting values
+            var amt = amount.value;
+            var fcurrency = from.value;
+            var tcurrency = to.value;
+
+            fetch(`https://open.er-api.com/v6/latest/${fcurrency}`)
+                .then(res => {
+                    return res.json();
+                })
+                .then(data => {
+
+                    var rate = data.rates[tcurrency];
+
+                    var total = rate * amt;
+
+                    console.log(total);
+
+                    result.innerHTML =
+                        "The converted amount is: " + total;
+
+                })
+                .catch(error => {
+                    console.log("Error:", error);
+                });
+
+        });
+
+    </script>
+
+</body>
+
+</html>
