@@ -1,7 +1,5 @@
 # CURRENCY CONVERTER PROJECT
 
-## Currency Converter Project
-
 This project revolves around a web-based Currency Converter designed to convert amounts between different currencies efficiently. The application provides a simple and user-friendly interface where users can select the source currency, target currency, enter an amount, and get the converted value.
 
 The system is developed using HTML5, CSS3, JavaScript, and the Fetch API. It uses an external currency exchange rate API to retrieve exchange rates dynamically and perform real-time currency conversions.
